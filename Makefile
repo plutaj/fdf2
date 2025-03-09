@@ -10,7 +10,7 @@ CC = cc
 LIBS = -lmlx -framework OpenGL -framework AppKit
 INCLUDES = -I. -I$(LIBFT_DIR) -I$(MINILIBX_MACOS_DIR) -I$(GET_NEXT_LINE_DIR)
 
-MAIN_SRC = main.c process_map.c
+MAIN_SRC = main.c process_map.c bersen_alg.c isometric_alg.c
 MAIN_OBJ = $(MAIN_SRC:.c=.o)
 GET_NEXT_LINE_OBJ = $(GET_NEXT_LINE_SRC:.c=.o)
 
