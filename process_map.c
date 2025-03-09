@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void    fill_map(s_fdf *map, char *file_n)
+void    get_width_height(s_fdf *map, char *file_n)
 {
     map->points_height = count_lines(file_n);
     map->points_width = count_nums(file_n);
@@ -55,5 +55,46 @@ int count_lines(char *file_n)
         free(str);
     close(fd);
     return (line_count);
+}
+
+void    alloc_matrix(s_fdf *map, char *file_n)
+{
+    int     fd;
+    int     i;
+    char    *str;
+
+    fd = open(file_n, O_RDONLY);
+    i = 0;
+    if (fd == -1)
+        exit(1);
+    map->matrix = (int **)malloc(sizeof(int *) * (map->points_height + 1));
+    while (i < map->points_height)
+        map->matrix[i++] = (int *)malloc(sizeof(int) * (map->points_width + 1));
+    str = get_next_line(fd);
+    i = 0;
+    while (map->points_height > i)
+    {
+        fill_data(map->matrix[i++], str);
+        free(str);
+        str = get_next_line(fd);
+    }
+    map->matrix[i] = NULL;
+    close(fd);
+}
+
+void    fill_data(int *line, char *str)
+{
+    char **temp_line;
+    int i;
+
+    temp_line = ft_split(str, ' ');
+    i = 0;
+    while (temp_line[i])
+    {
+        line[i] = ft_atoi(temp_line[i]);
+        free(temp_line[i]);
+        i++;
+    }
+    free(temp_line);
 }
 
