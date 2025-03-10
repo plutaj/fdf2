@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:58 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/09 17:27:00 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/10 16:46:44 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,10 @@ void    fill_data(int *line, char *str)
     }
     free(temp_line);
 }
+
+// 1,0xff 
+// 0,0xff 
+// 1,0xff 
+// 1,0xff 
+// 0,0xff
 

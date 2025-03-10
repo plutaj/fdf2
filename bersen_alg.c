@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/09 18:28:47 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/10 17:01:12 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,17 @@ void    print_map(s_fdf *map)
     }
 }
 
-void    isometric(float *x, float *y, int z)
+void    isometric(float *x, float *y, int z, s_fdf *map)
 {
     *x = (*x - *y) * cos(0.8);
     *y = (*x + *y) * sin(0.8) - z;
+    padding(x, y, map);
+}
+
+void    padding(float *x, float *y, s_fdf *map)
+{
+    *x += ((MAP_WIDTH - map->points_width * POINT_DISTANCE) * 1.2);
+    *y += (MAP_HEIGHT - map->points_height * POINT_DISTANCE) / 2;
 }
 
 void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
@@ -54,12 +61,10 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
         map->colour = 0xFF0000;
     else
         map->colour = WHITE_PIX;
-    isometric(&x, &y, z);
-    isometric(&x1, &y1, z1);
+    isometric(&x, &y, z, map);
+    isometric(&x1, &y1, z1, map);
     x_dest = x1 - x;
     y_dest = y1 - y;
-    // isometric(&x, &y, z);
-    // isometric(&x1, &y1, z1);
     result = is_greater(is_negat(x_dest), is_negat(y_dest));
     x_dest /= result;
     y_dest /= result;

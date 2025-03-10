@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:48 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/09 17:26:50 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/10 15:54:21 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int main(int argc, char **argv)
     get_width_height(map, argv[1]);
     alloc_matrix(map, argv[1]);
     map->mlx_connection = mlx_init();
-    map->mlx_window = mlx_new_window(map->mlx_connection, MAP_WIDTH + (map->points_width * POINT_DISTANCE), 
-                                    MAP_HEIGHT + (map->points_height * POINT_DISTANCE), "FdF");
+    // map->mlx_window = mlx_new_window(map->mlx_connection, ((map->points_width * POINT_DISTANCE) * 1.5), 
+    //                                 ((map->points_height * POINT_DISTANCE) * 1.5), "FdF");
+    map->mlx_window = mlx_new_window(map->mlx_connection, MAP_WIDTH, MAP_HEIGHT, "FdF");
     print_map(map);
     mlx_loop(map->mlx_connection);
     // TEST
