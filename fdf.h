@@ -7,9 +7,9 @@
 #include <math.h>
 
 #define WHITE_PIX 0xFFFFFF
-#define MAP_WIDTH 800
-#define MAP_HEIGHT 600
-#define POINT_DISTANCE 30
+#define MAP_WIDTH 1280
+#define MAP_HEIGHT 760
+#define POINT_DISTANCE 15
 #define ANGLE 30
 
 typedef struct t_map
@@ -36,3 +36,5 @@ void    print_map(s_fdf *map);
 void    incrs_poin_dist(float *x, float *y, float *x1, float *y1);
 void    isometric(float *x, float *y, int z, s_fdf *map);
 void    padding(float *x, float *y, s_fdf *map);
+int     hex_to_int(const char *hex_str);
+

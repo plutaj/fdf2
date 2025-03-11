@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:58 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/11 18:05:34 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/11 18:54:26 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,41 @@ void    alloc_matrix(s_fdf *map, char *file_n)
     close(fd);
 }
 
+int hex_to_int(const char *hex_str)
+{
+    int result = 0;
+
+    // Skip the "0x" prefix
+    if (hex_str[0] == '0' && hex_str[1] == 'x') {
+        hex_str += 2; // Move past "0x"
+    }
+
+    // Iterate through the string and convert each character
+    for (int i = 0; hex_str[i] != '\0'; i++) {
+        result *= 16; // Shift the current result to the left (multiply by 16)
+        
+        char c = hex_str[i];
+        int digit_value;
+
+        // Convert hex character to its integer value
+        if (c >= '0' && c <= '9') {
+            digit_value = c - '0';  // '0' to '9' -> 0 to 9
+        } else if (c >= 'a' && c <= 'f') {
+            digit_value = c - 'a' + 10;  // 'a' to 'f' -> 10 to 15
+        } else if (c >= 'A' && c <= 'F') {
+            digit_value = c - 'A' + 10;  // 'A' to 'F' -> 10 to 15
+        } else {
+            // Invalid character (not a valid hex digit)
+            break;
+        }
+
+        // Add the current digit's value to the result
+        result += digit_value;
+    }
+
+    return result;
+}
+
 void    fill_data(int *line, int *colour_line, char *str)
 {
     char    **temp_line;
@@ -137,8 +172,8 @@ void    fill_data(int *line, int *colour_line, char *str)
         {
             temp_colour_line = ft_split(temp_line[i], ',');
             line[i] = ft_atoi(temp_colour_line[0]);
-            colour_line[i] = temp_colour_line[1][0];
             // colour_line[i] = *temp_colour_line[1];
+            colour_line[i] = hex_to_int(temp_colour_line[1]);
             free(temp_colour_line[0]);
             free(temp_colour_line[1]);
             free(temp_colour_line);

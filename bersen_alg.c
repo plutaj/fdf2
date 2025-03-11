@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/11 18:04:06 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/11 19:27:58 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    isometric(float *x, float *y, int z, s_fdf *map)
 
 void    padding(float *x, float *y, s_fdf *map)
 {
-    *x += ((MAP_WIDTH - map->points_width * POINT_DISTANCE) * 1.2);
+    *x += ((MAP_WIDTH - map->points_width * POINT_DISTANCE) / 2);
     *y += (MAP_HEIGHT - map->points_height * POINT_DISTANCE) / 2;
 }
 
@@ -57,10 +57,14 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     z = map->matrix[(int)y][(int)x];
     z1 = map->matrix[(int)y1][(int)x1];
     incrs_poin_dist(&x, &y, &x1, &y1);
-    if (z != 0)
-        map->colour = map->colour_matrix[z][z1];
-    else
-        map->colour = WHITE_PIX;
+    //chyba tu
+    // if (map->colour_matrix[(int)x][(int)y] != 0)
+    //     map->colour = map->colour_matrix[(int)x][(int)y];
+    //     // map->colour = WHITE_PIX;
+    // else
+    //     map->colour = WHITE_PIX;
+    // // TEST
+    //chyba tu
     isometric(&x, &y, z, map);
     isometric(&x1, &y1, z1, map);
     x_dest = x1 - x;
