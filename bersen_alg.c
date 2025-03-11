@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/10 17:01:12 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/11 18:04:06 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     z = map->matrix[(int)y][(int)x];
     z1 = map->matrix[(int)y1][(int)x1];
     incrs_poin_dist(&x, &y, &x1, &y1);
-    if (z)
-        map->colour = 0xFF0000;
+    if (z != 0)
+        map->colour = map->colour_matrix[z][z1];
     else
         map->colour = WHITE_PIX;
     isometric(&x, &y, z, map);
