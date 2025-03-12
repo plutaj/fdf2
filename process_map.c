@@ -6,7 +6,7 @@
 /*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:58 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/11 18:54:26 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/12 18:54:30 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void    alloc_colour_matrix(s_fdf *map)
     //         map->colour_matrix[i][z++] = 0; 
     //     i++;
     // }
-    // map->matrix[i] = NULL;
+    map->colour_matrix[i] = NULL;
 }
 
 void    alloc_matrix(s_fdf *map, char *file_n)
@@ -116,7 +116,7 @@ void    alloc_matrix(s_fdf *map, char *file_n)
         str = get_next_line(fd);
     }
     map->matrix[i] = NULL;
-    map->colour_matrix[i] = NULL;
+    // map->colour_matrix[i] = NULL;
     close(fd);
 }
 

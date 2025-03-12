@@ -9,8 +9,7 @@
 #define WHITE_PIX 0xFFFFFF
 #define MAP_WIDTH 1280
 #define MAP_HEIGHT 760
-#define POINT_DISTANCE 15
-#define ANGLE 30
+#define POINT_DISTANCE 30
 
 typedef struct t_map
 {
@@ -37,4 +36,7 @@ void    incrs_poin_dist(float *x, float *y, float *x1, float *y1);
 void    isometric(float *x, float *y, int z, s_fdf *map);
 void    padding(float *x, float *y, s_fdf *map);
 int     hex_to_int(const char *hex_str);
-
+int     get_inpt(int key, s_fdf *map);
+void    free_all(s_fdf *map);
+void    free_matrixes(s_fdf *map);
+int     close_window(s_fdf *map);
