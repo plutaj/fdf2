@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:48 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/12 20:29:45 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/13 18:33:07 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int main(int argc, char **argv)
 {
-    void    *mlx_connection;
-    void    *mlx_window;
     s_fdf   *map;
+    int     fd;
 
     if (argc != 2)
+        exit(1);
+    fd = open(argv[1], O_RDONLY);
+    if (fd == -1)
         exit(1);
     map = (s_fdf *)malloc(sizeof(s_fdf));
     get_width_height(map, argv[1]);
@@ -26,39 +28,13 @@ int main(int argc, char **argv)
     map->mlx_connection = mlx_init();
     map->mlx_window = mlx_new_window(map->mlx_connection, MAP_WIDTH, MAP_HEIGHT, "FdF");
     print_map(map);
+    map->mlx_image = mlx_new_image(map->mlx_connection, MAP_WIDTH, MAP_HEIGHT);
+    mlx_put_image_to_window(map->mlx_connection, map->mlx_window, map->mlx_image, 0, 0);
     mlx_key_hook(map->mlx_window, get_inpt, map);
     mlx_hook(map->mlx_window, 17, 0, close_window, map);
     mlx_loop(map->mlx_connection);
     return (0);
 }
-
-// void free_all(s_fdf *map)
-// {
-//     int i;
-
-//     if (map->mlx_window)
-//         mlx_destroy_window(map->mlx_connection, map->mlx_window);
-//     // if (map->mlx_connection)
-//     //     mlx_destroy_display(map->mlx_connection);
-//     if (map->matrix) {
-//         for (i = 0; i < map->points_height; i++) {
-//             free(map->matrix[i]);
-//         }
-//         free(map->matrix);
-//     }
-//     if (map->colour_matrix) {
-//         for (i = 0; i < map->points_height; i++) {
-//             free(map->colour_matrix[i]);
-//         }
-//         free(map->colour_matrix);
-//     }
-//     if (map->mlx_connection)
-//         free(map->mlx_connection);
-//     if (map->mlx_window)
-//         free(map->mlx_window);
-//     if (map)
-//         free(map);
-// }
 
 void free_all(s_fdf *map)
 {

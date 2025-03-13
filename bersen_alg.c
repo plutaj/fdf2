@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   bersen_alg.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/12 19:07:49 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/03/13 18:20:12 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <math.h>
 
 void    print_map(s_fdf *map)
 {
@@ -58,20 +59,16 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     z1 = map->matrix[(int)y1][(int)x1];
     if (map->colour_matrix[(int)y][(int)x])
         map->colour = map->colour_matrix[(int)y][(int)x];
-        // map->colour = WHITE_PIX;
     else if (map->colour_matrix[(int)y1][(int)x1])
         map->colour = map->colour_matrix[(int)y1][(int)x1];
     else
-        map->colour = WHITE_PIX;
+    {
+        if (z || z1)
+            map->colour = WHITE_PIX;
+        else 
+            map->colour = SECOND_COLOUR;
+    }
     incrs_poin_dist(&x, &y, &x1, &y1);
-    //chyba tu
-    // if (map->colour_matrix[(int)x][(int)y] != 0)
-    //     map->colour = map->colour_matrix[(int)x][(int)y];
-    //     // map->colour = WHITE_PIX;
-    // else
-    //     map->colour = WHITE_PIX;
-    // // TEST
-    //chyba tu
     isometric(&x, &y, z, map);
     isometric(&x1, &y1, z1, map);
     x_dest = x1 - x;
@@ -81,7 +78,7 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     y_dest /= result;
     while((int)(x - x1) || (int)(y - y1))
     {
-        mlx_pixel_put(map->mlx_connection, map->mlx_window, x, y, map->colour);
+        mlx_pixel_put(map->mlx_image, map->mlx_window, x, y, map->colour);
         x += x_dest;
         y += y_dest;
     }

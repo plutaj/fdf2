@@ -1,4 +1,5 @@
 NAME = libft.a
+
 SOURCES = \
 	ft_isalpha.c \
 	ft_isdigit.c \
@@ -35,6 +36,10 @@ SOURCES = \
 	ft_itoa.c \
 	ft_memccpy.c \
 	ft_memset.c \
+	get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c \
+
+SOURCES += $(GET_NEXT_LINE_SRC)
 
 OBJECTS = $(SOURCES:.c=.o)
 

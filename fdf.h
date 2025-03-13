@@ -1,4 +1,4 @@
-#include "minilibx_macos/mlx.h"
+#include "minilibx-linux/mlx.h"
 #include "get_next_line/get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -6,13 +6,15 @@
 #include "libft/libft.h"
 #include <math.h>
 
-#define WHITE_PIX 0xFFFFFF
+#define WHITE_PIX 16777215
+#define SECOND_COLOUR 0x0000FF
 #define MAP_WIDTH 1280
 #define MAP_HEIGHT 760
 #define POINT_DISTANCE 30
 
-typedef struct t_map
+typedef struct t_fdf
 {
+    void    *mlx_image;
     int     **matrix;
     int     **colour_matrix;
     int     points_width;
@@ -40,3 +42,4 @@ int     get_inpt(int key, s_fdf *map);
 void    free_all(s_fdf *map);
 void    free_matrixes(s_fdf *map);
 int     close_window(s_fdf *map);
+void    free_temp_colour_line(char **temp_colour_line);
