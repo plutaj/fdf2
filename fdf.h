@@ -1,5 +1,6 @@
 #include "minilibx-linux/mlx.h"
 #include "get_next_line/get_next_line.h"
+#include "libft/ft_printf/ft_printf.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -10,20 +11,30 @@
 #define SECOND_COLOUR 0x0000FF
 #define MAP_WIDTH 1280
 #define MAP_HEIGHT 760
-#define POINT_DISTANCE 30
+#define POINT_DISTANCE 25
 
 typedef struct t_fdf
 {
     void    *mlx_image;
-    int     **matrix;
-    int     **colour_matrix;
-    int     points_width;
-    int     points_height;
+    char    *mlx_img_data;
+    int     bpp;
+    int     size_line;
+    int     endian;
+
     void    *mlx_connection;
     void    *mlx_window;
+
+    int     **matrix;
+    int     **colour_matrix;
+
+    int     points_width;
+    int     points_height;
+
     int     colour;
 }                       s_fdf;
 
+void    get_mlx_data(s_fdf *map, char *name);
+void    edge_cases(int argc, char *argv);
 void    get_width_height(s_fdf *map, char *file_n);
 int     count_lines(char *file_n);
 int     count_nums(char *file_n);

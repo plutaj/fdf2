@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/13 18:20:12 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/14 18:56:04 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     else
     {
         if (z || z1)
-            map->colour = WHITE_PIX;
-        else 
             map->colour = SECOND_COLOUR;
+        else 
+            map->colour = WHITE_PIX;
     }
     incrs_poin_dist(&x, &y, &x1, &y1);
     isometric(&x, &y, z, map);
@@ -78,7 +78,11 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     y_dest /= result;
     while((int)(x - x1) || (int)(y - y1))
     {
-        mlx_pixel_put(map->mlx_image, map->mlx_window, x, y, map->colour);
+        // mlx_pixel_put(map->mlx_connection, map->mlx_image, x, y, map->colour);
+        // mlx_pixel_put(map->mlx_connection, map->mlx_window, x, y, map->colour);
+        int pixel_index = (int)(y) * map->size_line + (int)(x) * (map->bpp / 8);
+        
+        *(unsigned int *)(map->mlx_img_data + pixel_index) = map->colour;
         x += x_dest;
         y += y_dest;
     }

@@ -38,6 +38,9 @@ SOURCES = \
 	ft_memset.c \
 	get_next_line/get_next_line.c \
 	get_next_line/get_next_line_utils.c \
+	ft_printf/ft_printf.c \
+	ft_printf/functions.c \
+	ft_printf/functions2.c \
 
 SOURCES += $(GET_NEXT_LINE_SRC)
 

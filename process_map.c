@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:58 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/13 18:23:13 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/14 19:45:55 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void    alloc_colour_matrix(s_fdf *map)
     i = 0;
     map->colour_matrix = (int **)malloc(sizeof(int *) * (map->points_height + 1));
     while (i < map->points_height)
-        map->colour_matrix[i++] = (int *)malloc(sizeof(int) * (map->points_width + 1));
+    {
+        map->colour_matrix[i] = (int *)malloc(sizeof(int) * (map->points_width + 1));
+        i++;
+    }
     map->colour_matrix[i] = NULL;
 }
 
@@ -92,7 +95,10 @@ void    alloc_matrix(s_fdf *map, char *file_n)
         exit(1);
     map->matrix = (int **)malloc(sizeof(int *) * (map->points_height + 1));
     while (i < map->points_height)
-        map->matrix[i++] = (int *)malloc(sizeof(int) * (map->points_width + 1));
+    {
+        map->matrix[i] = (int *)malloc(sizeof(int) * (map->points_width + 1));
+        i++;
+    }
     alloc_colour_matrix(map);
     str = get_next_line(fd);
     i = 0;
@@ -103,6 +109,8 @@ void    alloc_matrix(s_fdf *map, char *file_n)
         free(str);
         str = get_next_line(fd);
     }
+    if (str)
+        free(str);
     map->matrix[i] = NULL;
     close(fd);
 }
