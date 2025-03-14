@@ -1,11 +1,12 @@
 #include "minilibx-linux/mlx.h"
-#include "get_next_line/get_next_line.h"
+#include "libft/get_next_line/get_next_line.h"
 #include "libft/ft_printf/ft_printf.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include "libft/libft.h"
 #include <math.h>
+#include <X11/keysym.h>
 
 #define WHITE_PIX 16777215
 #define SECOND_COLOUR 0x0000FF

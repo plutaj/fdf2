@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:48 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/14 19:37:41 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/14 20:16:08 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,21 +69,52 @@ void free_all(s_fdf *map)
         if (map->mlx_window)
         {
             mlx_destroy_window(map->mlx_connection, map->mlx_window);
+            // if (map->mlx_window)
+            //     free(map->mlx_window);
             map->mlx_window = NULL;
         }
         if (map->mlx_image)
         {
             mlx_destroy_image(map->mlx_connection, map->mlx_image);
+            // if (map->mlx_image)
+            //     free(map->mlx_image);
             map->mlx_image = NULL;
         }
         if (map->mlx_connection)
         {
-            free(map->mlx_connection);
-            map->mlx_connection = NULL;
+            mlx_destroy_display(map->mlx_connection);
+            if (map->mlx_connection)
+                free(map->mlx_connection);
         }
         free(map);
     }
 }
+
+// void    free_matrixes(s_fdf *map)
+// {
+//     int i;
+
+//     i = 0;
+//     if (map->matrix)
+//     {
+//         while (i < map->points_height)
+//         {
+//             free(map->matrix[i]);
+//             i++;
+//         }
+//         free(map->matrix);
+//     }
+//     i = 0;
+//     if (map->colour_matrix)
+//     {
+//         while (i < map->points_height)
+//         {
+//             free(map->colour_matrix[i]);
+//             i++;
+//         }
+//         free(map->colour_matrix);
+//     }
+// }
 
 void    free_matrixes(s_fdf *map)
 {
@@ -92,7 +123,7 @@ void    free_matrixes(s_fdf *map)
     i = 0;
     if (map->matrix)
     {
-        while (i < map->points_height)
+        while (map->matrix[i])
         {
             free(map->matrix[i]);
             i++;
@@ -102,7 +133,7 @@ void    free_matrixes(s_fdf *map)
     i = 0;
     if (map->colour_matrix)
     {
-        while (i < map->points_height)
+        while (map->colour_matrix[i])
         {
             free(map->colour_matrix[i]);
             i++;
@@ -113,7 +144,7 @@ void    free_matrixes(s_fdf *map)
 
 int get_inpt(int key, s_fdf *map)
 {
-    if (key == 53)
+    if (key == XK_Escape)
     {
         free_all(map);
         exit(0);
