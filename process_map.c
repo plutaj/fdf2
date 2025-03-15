@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:58 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/14 19:51:05 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/15 16:33:59 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int count_nums(char *file_n)
             str++;
     }
     free(t_str);
+    close(fd);
     return (num_count);
 }
 
@@ -80,7 +81,7 @@ void    alloc_colour_matrix(s_fdf *map)
         map->colour_matrix[i] = (int *)malloc(sizeof(int) * (map->points_width + 1));
         i++;
     }
-    map->colour_matrix[i] = NULL;
+    // map->colour_matrix[i] = NULL;
 }
 
 void    alloc_matrix(s_fdf *map, char *file_n)
@@ -102,16 +103,19 @@ void    alloc_matrix(s_fdf *map, char *file_n)
     alloc_colour_matrix(map);
     str = get_next_line(fd);
     i = 0;
-    while (map->points_height > i)
+    while (i < map->points_height)
     {
         fill_data(map->matrix[i], map->colour_matrix[i], str);
         i++;
         free(str);
+        str = NULL;
         str = get_next_line(fd);
     }
     if (str)
         free(str);
+    str = NULL;
     map->matrix[i] = NULL;
+    map->colour_matrix[i] = NULL;
     close(fd);
 }
 
@@ -138,7 +142,6 @@ int hex_to_int(const char *hex_str)
         }
         result += digit_value;
     }
-
     return result;
 }
 
@@ -184,4 +187,5 @@ void    free_temp_colour_line(char **temp_colour_line)
         i++;
     }
     free(temp_colour_line);
+    temp_colour_line = NULL;
 }

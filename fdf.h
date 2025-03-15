@@ -10,9 +10,9 @@
 
 #define WHITE_PIX 16777215
 #define SECOND_COLOUR 0x0000FF
-#define MAP_WIDTH 1280
-#define MAP_HEIGHT 760
-#define POINT_DISTANCE 25
+#define MAP_WIDTH 1980 //1280
+#define MAP_HEIGHT 1200 //760
+#define POINT_DISTANCE 23
 
 typedef struct t_fdf
 {
@@ -21,16 +21,12 @@ typedef struct t_fdf
     int     bpp;
     int     size_line;
     int     endian;
-
     void    *mlx_connection;
     void    *mlx_window;
-
     int     **matrix;
     int     **colour_matrix;
-
     int     points_width;
     int     points_height;
-
     int     colour;
 }                       s_fdf;
 
@@ -55,3 +51,4 @@ void    free_all(s_fdf *map);
 void    free_matrixes(s_fdf *map);
 int     close_window(s_fdf *map);
 void    free_temp_colour_line(char **temp_colour_line);
+void    my_put_pixel(float *x, float *y, float x_dest, float y_dest, s_fdf *map);

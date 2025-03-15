@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:48 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/14 20:16:08 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/15 14:36:14 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,10 @@ void free_all(s_fdf *map)
             mlx_destroy_display(map->mlx_connection);
             if (map->mlx_connection)
                 free(map->mlx_connection);
+            map->mlx_connection = NULL;
         }
         free(map);
+        map = NULL;
     }
 }
 
@@ -129,6 +131,7 @@ void    free_matrixes(s_fdf *map)
             i++;
         }
         free(map->matrix);
+        map->matrix = NULL;
     }
     i = 0;
     if (map->colour_matrix)
@@ -139,6 +142,7 @@ void    free_matrixes(s_fdf *map)
             i++;
         }
         free(map->colour_matrix);
+        map->colour_matrix = NULL;
     }
 }
 

@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/14 18:56:04 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/15 16:30:13 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
 
     z = map->matrix[(int)y][(int)x];
     z1 = map->matrix[(int)y1][(int)x1];
+    
     if (map->colour_matrix[(int)y][(int)x])
         map->colour = map->colour_matrix[(int)y][(int)x];
     else if (map->colour_matrix[(int)y1][(int)x1])
@@ -68,6 +69,7 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
         else 
             map->colour = WHITE_PIX;
     }
+    
     incrs_poin_dist(&x, &y, &x1, &y1);
     isometric(&x, &y, z, map);
     isometric(&x1, &y1, z1, map);
@@ -77,15 +79,17 @@ void    bersenham(float x, float y, float x1, float y1, s_fdf *map)
     x_dest /= result;
     y_dest /= result;
     while((int)(x - x1) || (int)(y - y1))
-    {
-        // mlx_pixel_put(map->mlx_connection, map->mlx_image, x, y, map->colour);
-        // mlx_pixel_put(map->mlx_connection, map->mlx_window, x, y, map->colour);
-        int pixel_index = (int)(y) * map->size_line + (int)(x) * (map->bpp / 8);
-        
-        *(unsigned int *)(map->mlx_img_data + pixel_index) = map->colour;
-        x += x_dest;
-        y += y_dest;
-    }
+        my_put_pixel(&x, &y, x_dest, y_dest, map);
+}
+
+void    my_put_pixel(float *x, float *y, float x_dest, float y_dest, s_fdf *map)
+{
+    int pixel_index;
+    
+    pixel_index = (int)(*y) * map->size_line + (int)(*x) * (map->bpp / 8);
+    *(unsigned int *)(map->mlx_img_data + pixel_index) = map->colour;
+    *x += x_dest;
+    *y += y_dest;
 }
 
 float   is_greater(float x, float y)
