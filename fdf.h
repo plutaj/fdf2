@@ -8,11 +8,11 @@
 #include <math.h>
 #include <X11/keysym.h>
 
-#define WHITE_PIX 16777215
+#define WHITE_PIX 0xFFFFFF
 #define SECOND_COLOUR 0x0000FF
-#define MAP_WIDTH 1320
+#define MAP_WIDTH 1620
 #define MAP_HEIGHT 820
-#define POINT_DISTANCE 25
+#define POINT_DISTANCE 12
 
 typedef struct t_fdf
 {
