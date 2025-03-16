@@ -9,7 +9,14 @@ CFLAGS = -Wall -Wextra -Werror
 LIBS = -lmlx -lX11 -lXext -lm
 INCLUDES = -I. -I$(LIBFT_DIR) -I$(MINILIBX_LINUX_DIR)
 
-MAIN_SRC = main.c process_map.c bersen_alg.c isometric_alg.c
+MAIN_SRC = 	main.c \
+			process_map.c \
+			bersen_alg.c \
+			main_utils.c \
+			process_map_utils.c \
+			free_functions.c \
+			bersen_alg_utils.c
+
 MAIN_OBJ = $(MAIN_SRC:.c=.o)
 
 MAIN_EXEC = fdf
