@@ -6,13 +6,13 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 17:26:58 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/16 12:21:12 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/16 15:50:18 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	alloc_colour_matrix(s_fdf *map)
+void	alloc_colour_matrix(t_fdf *map)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ void	alloc_colour_matrix(s_fdf *map)
 	}
 }
 
-void	alloc_matrix(s_fdf *map, char *file_n)
+void	alloc_matrix(t_fdf *map, char *file_n)
 {
 	int		fd;
 	int		i;

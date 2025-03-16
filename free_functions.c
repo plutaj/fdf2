@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/16 10:40:52 by jpluta            #+#    #+#             */
-/*   Updated: 2025/03/16 13:53:23 by jpluta           ###   ########.fr       */
+/*   Created: 2025/03/16 15:52:31 by jpluta            #+#    #+#             */
+/*   Updated: 2025/03/16 15:58:06 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_temp_colour_line(char **temp_colour_line)
 	temp_colour_line = NULL;
 }
 
-void	free_all(s_fdf *map)
+void	free_all(t_fdf *map)
 {
 	if (map)
 	{
@@ -53,30 +53,30 @@ void	free_all(s_fdf *map)
 	}
 }
 
-void    free_matrixes(s_fdf *map)
+void	free_matrixes(t_fdf *map)
 {
-    int i;
+	int	i;
 
-    i = map->points_height;
-    if (map->matrix)
-    {
-        while (i >= 0)
-        {
-            free(map->matrix[i]);
+	i = map->points_height;
+	if (map->matrix)
+	{
+		while (i >= 0)
+		{
+			free(map->matrix[i]);
 			map->matrix[i] = NULL;
 			i--;
-        }
-        free(map->matrix);
-    }
-    i = map->points_height;
-    if (map->colour_matrix)
-    {
-        while (i >= 0)
-        {
+		}
+		free(map->matrix);
+	}
+	i = map->points_height;
+	if (map->colour_matrix)
+	{
+		while (i >= 0)
+		{
 			free(map->colour_matrix[i]);
 			map->colour_matrix[i] = NULL;
 			i--;
-        }
-        free(map->colour_matrix);
-    }
+		}
+		free(map->colour_matrix);
+	}
 }

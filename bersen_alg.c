@@ -6,13 +6,13 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/16 14:57:18 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/16 15:49:18 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	print_map(s_fdf *map)
+void	print_map(t_fdf *map)
 {
 	int	x;
 	int	y;
@@ -33,7 +33,7 @@ void	print_map(s_fdf *map)
 	}
 }
 
-void	bersenham(float x, float y, float x1, float y1, s_fdf *map)
+void	bersenham(float x, float y, float x1, float y1, t_fdf *map)
 {
 	float	x_dest;
 	float	y_dest;
@@ -56,7 +56,7 @@ void	bersenham(float x, float y, float x1, float y1, s_fdf *map)
 		my_put_pixel(&x, &y, x_dest, y_dest, map);
 }
 
-void	my_put_pixel(float *x, float *y, float x_dest, float y_dest, s_fdf *map)
+void	my_put_pixel(float *x, float *y, float x_dest, float y_dest, t_fdf *map)
 {
 	int	pixel_index;
 

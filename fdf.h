@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/16 15:50:51 by jpluta            #+#    #+#             */
+/*   Updated: 2025/03/16 15:51:52 by jpluta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minilibx-linux/mlx.h"
 #include "libft/get_next_line/get_next_line.h"
 #include "libft/ft_printf/ft_printf.h"
@@ -14,7 +26,7 @@
 #define MAP_HEIGHT 820
 #define POINT_DISTANCE 12
 
-typedef struct t_fdf
+typedef struct s_fdf
 {
 	void	*mlx_image;
 	char	*mlx_img_data;
@@ -29,29 +41,31 @@ typedef struct t_fdf
 	int		points_height;
 	int		true_colour;
 	int		colour;
-}						s_fdf;
+}						t_fdf;
 
-int		find_colour(s_fdf *map);
-void	get_mlx_data(s_fdf *map, char *name);
+int		find_colour(t_fdf *map);
+void	get_mlx_data(t_fdf *map, char *name);
 void	edge_cases(int argc, char *argv);
-void	get_width_height_colour(s_fdf *map, char *file_n);
+void	get_width_height_colour(t_fdf *map, char *file_n);
 int		count_lines(char *file_n);
 int		count_nums(char *file_n);
-void	alloc_matrix(s_fdf *map, char *file_n);
-void	alloc_colour_matrix(s_fdf *map);
+void	alloc_matrix(t_fdf *map, char *file_n);
+void	alloc_colour_matrix(t_fdf *map);
 void	fill_data(int *line, int *colour_line, char *str);
 float	is_negat(float n);
 float	is_greater(float x, float y);
-void	bersenham(float x, float y, float x1, float y1, s_fdf *map);
-void	print_map(s_fdf *map);
+void	bersenham(float x, float y, float x1, float y1, t_fdf *map);
+void	print_map(t_fdf *map);
 void	incrs_poin_dist(float *x, float *y, float *x1, float *y1);
-void	isometric(float *x, float *y, int z, s_fdf *map);
-void	padding(float *x, float *y, s_fdf *map);
+void	isometric(float *x, float *y, int z, t_fdf *map);
+void	padding(float *x, float *y, t_fdf *map);
 int		hex_to_int(const char *hex_str);
-int		get_inpt(int key, s_fdf *map);
-void	free_all(s_fdf *map);
-void	free_matrixes(s_fdf *map);
-int		close_window(s_fdf *map);
+int		get_inpt(int key, t_fdf *map);
+void	free_all(t_fdf *map);
+void	free_matrixes(t_fdf *map);
+int		close_window(t_fdf *map);
 void	free_temp_colour_line(char **temp_colour_line);
-void	my_put_pixel(float *x, float *y, float x_dest, float y_dest, s_fdf *map);
-void	colour_handling(float x, float y, float x1, float y1, int z, int z1, s_fdf *map);
+void	my_put_pixel(float *x, float *y, float x_dest,
+			float y_dest, t_fdf *map);
+void	colour_handling(float x, float y, float x1,
+			float y1, int z, int z1, t_fdf *map);

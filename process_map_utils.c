@@ -6,13 +6,13 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:45:36 by jpluta            #+#    #+#             */
-/*   Updated: 2025/03/16 13:55:43 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/16 15:50:00 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	get_width_height_colour(s_fdf *map, char *file_n)
+void	get_width_height_colour(t_fdf *map, char *file_n)
 {
 	map->points_height = count_lines(file_n);
 	map->points_width = count_nums(file_n);

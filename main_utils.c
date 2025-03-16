@@ -6,21 +6,20 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 10:43:12 by jpluta            #+#    #+#             */
-/*   Updated: 2025/03/16 13:54:35 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/16 15:57:55 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	get_mlx_data(s_fdf *map, char *name)
+void	get_mlx_data(t_fdf *map, char *name)
 {
 	map->mlx_connection = mlx_init();
-	map->mlx_window = mlx_new_window(map->mlx_connection,
-			MAP_WIDTH + 100, MAP_HEIGHT + 100, name);
-	map->mlx_image = mlx_new_image(map->mlx_connection,
-			MAP_WIDTH, MAP_HEIGHT);
-	map->mlx_img_data = mlx_get_data_addr(map->mlx_image,
-			&map->bpp, &map->size_line, &map->endian);
+	map->mlx_window = mlx_new_window(map->mlx_connection, MAP_WIDTH + 100,
+			MAP_HEIGHT + 100, name);
+	map->mlx_image = mlx_new_image(map->mlx_connection, MAP_WIDTH, MAP_HEIGHT);
+	map->mlx_img_data = mlx_get_data_addr(map->mlx_image, &map->bpp,
+			&map->size_line, &map->endian);
 }
 
 void	edge_cases(int argc, char *argv)
@@ -45,7 +44,7 @@ void	edge_cases(int argc, char *argv)
 	close(fd);
 }
 
-int	find_colour(s_fdf *map)
+int	find_colour(t_fdf *map)
 {
 	int	i;
 	int	j;
@@ -65,7 +64,7 @@ int	find_colour(s_fdf *map)
 	return (0);
 }
 
-int	get_inpt(int key, s_fdf *map)
+int	get_inpt(int key, t_fdf *map)
 {
 	if (key == XK_Escape)
 	{
@@ -75,7 +74,7 @@ int	get_inpt(int key, s_fdf *map)
 	return (0);
 }
 
-int	close_window(s_fdf *map)
+int	close_window(t_fdf *map)
 {
 	free_all(map);
 	exit(0);
