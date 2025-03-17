@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 16:04:10 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/16 15:49:18 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/03/17 16:39:09 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	my_put_pixel(float *x, float *y, float x_dest, float y_dest, t_fdf *map)
 {
 	int	pixel_index;
 
-	pixel_index = (int)(*y) * map->size_line + (int)(*x) * (map->bpp / 8);
+	pixel_index = (int)(*y) *map->size_line + (int)(*x) *(map->bpp / 8);
 	*(unsigned int *)(map->mlx_img_data + pixel_index) = map->colour;
 	*x += x_dest;
 	*y += y_dest;
