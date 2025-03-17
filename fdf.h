@@ -24,7 +24,7 @@
 #define SECOND_COLOUR 0x0000FF
 #define MAP_WIDTH 1620
 #define MAP_HEIGHT 820
-#define POINT_DISTANCE 12
+#define POINT_DISTANCE 23
 
 typedef struct s_fdf
 {
@@ -43,6 +43,16 @@ typedef struct s_fdf
 	int		colour;
 }						t_fdf;
 
+typedef struct s_crds
+{
+	float	x;
+	float	y;
+	float	x1;
+	float	y1;
+	float	z;
+	float	z1;
+}				t_crds;
+
 int		find_colour(t_fdf *map);
 void	get_mlx_data(t_fdf *map, char *name);
 void	edge_cases(int argc, char *argv);
@@ -54,9 +64,9 @@ void	alloc_colour_matrix(t_fdf *map);
 void	fill_data(int *line, int *colour_line, char *str);
 float	is_negat(float n);
 float	is_greater(float x, float y);
-void	bersenham(float x, float y, float x1, float y1, t_fdf *map);
+void	bersenham(t_crds *crds, t_fdf *map, int i);
 void	print_map(t_fdf *map);
-void	incrs_poin_dist(float *x, float *y, float *x1, float *y1);
+void	incrs_poin_dist(t_crds *temp);
 void	isometric(float *x, float *y, int z, t_fdf *map);
 void	padding(float *x, float *y, t_fdf *map);
 int		hex_to_int(const char *hex_str);
@@ -65,7 +75,7 @@ void	free_all(t_fdf *map);
 void	free_matrixes(t_fdf *map);
 int		close_window(t_fdf *map);
 void	free_temp_colour_line(char **temp_colour_line);
-void	my_put_pixel(float *x, float *y, float x_dest,
-			float y_dest, t_fdf *map);
-void	colour_handling(float x, float y, float x1,
-			float y1, int z, int z1, t_fdf *map);
+void	my_put_pixel(t_crds *temp, float x_dest, float y_dest, t_fdf *map);
+// void	my_put_pixel(float *x, float *y, float x_dest, float y_dest, t_fdf *map);
+void	colour_handling(t_crds *crds, int z, int z1, t_fdf *map);
+void	copy_data(t_crds *temp, t_crds *crds);

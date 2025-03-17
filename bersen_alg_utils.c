@@ -12,15 +12,14 @@
 
 #include "fdf.h"
 
-void	colour_handling(float x, float y, float x1, float y1, int z, int z1,
-		t_fdf *map)
+void	colour_handling(t_crds *crds, int z, int z1, t_fdf *map)
 {
 	if (map->true_colour == 1)
 	{
-		if (map->colour_matrix[(int)y][(int)x])
+		if (map->colour_matrix[(int)crds->y][(int)crds->x])
 			map->colour = WHITE_PIX - (z * POINT_DISTANCE);
-		else if (map->colour_matrix[(int)y1][(int)x1])
-			map->colour = map->colour_matrix[(int)y1][(int)x1];
+		else if (map->colour_matrix[(int)crds->y1][(int)crds->x1])
+			map->colour = map->colour_matrix[(int)crds->y1][(int)crds->x1];
 		else
 			map->colour = WHITE_PIX;
 	}
@@ -50,6 +49,7 @@ void	isometric(float *x, float *y, int z, t_fdf *map)
 	*y = (*x + *y) * sin(0.8) - z;
 	padding(x, y, map);
 }
+
 
 float	is_greater(float x, float y)
 {
